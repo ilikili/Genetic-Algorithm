@@ -60,8 +60,11 @@ def evolve(population, keep=0.5, generations=50, seed=None):
         #Fill the rest of the population
         while len(new_population) < len(population):
 
-            parent_a = rng.choice(population)
-            parent_b = rng.choice(population)
+            fitnesses = [s.fitness for s in population]
+            probs = softmax(fitnesses)
+
+            parent_a = rng.choice(population, p=probs)
+            parent_b = rng.choice(population, p=probs)
 
             child = crossover(parent_a, parent_b, seed=rng.integers(1e9))
 
@@ -291,3 +294,8 @@ def score_sla_spacing(schedule):
                 score -= 0.25
 
     return score
+
+def softmax(fitnesses):
+    f = np.array(fitnesses, dtype=float)
+    exp = np.exp(f - np.max(f))  # stability trick
+    return exp / exp.sum()
