@@ -2,7 +2,7 @@ import random
 import numpy as np
 
 import constants
-from functions import random_schedule, evolve, compute_fitness, mutate, crossover, print_schedule, print_metrics
+from functions import random_schedule, evolve, compute_fitness, mutate, crossover, print_schedule, print_metrics, format_schedule
 import models
 
 #Variables needed for GA
@@ -19,6 +19,19 @@ population, metrics = evolve(population,keep=PERCENT_KEPT,generations=GENERATION
 
 #just print some results to the console
 print_metrics(metrics)
+
+# Best schedule in the final generation (population is not sorted after the last breeding step)
+best_schedule = max(population, key=lambda s: compute_fitness(s))
+final_gen = metrics[-1]["generation"] if metrics else GENERATIONS - 1
+final_best_fitness = best_schedule.fitness
+print(f"\nFinal generation ({final_gen}): best fitness = {final_best_fitness:.4f}")
+
+OUTPUT_PATH = "best_schedule_output.txt"
+with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
+    f.write(f"Final generation: {final_gen}\n")
+    f.write(f"Best fitness: {final_best_fitness}\n\n")
+    f.write(format_schedule(best_schedule))
+print(f"Best schedule written to {OUTPUT_PATH}")
 
 
 def plot_fitness(metrics):

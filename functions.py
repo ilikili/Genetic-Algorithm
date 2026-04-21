@@ -22,12 +22,6 @@ def random_schedule(seed=None):
 
 def evolve(population, keep=0.5, generations=50, seed=None):
     rng = np.random.Generator(np.random.PCG64DXSM(seed))
-def evolve(population, keep=0.5, generations=50, seed=None):
-    rng = np.random.Generator(np.random.PCG64DXSM(seed))
-def evolve(population, keep=0.5, generations=50, seed=None):
-    rng = np.random.Generator(np.random.PCG64DXSM(seed))
-def evolve(population, keep=0.5, generations=50, seed=None):
-    rng = np.random.Generator(np.random.PCG64DXSM(seed))
 
     metrics = [] #store performance
     prev_avg = None
@@ -140,17 +134,20 @@ def crossover(parent_a, parent_b, seed=None):
 
     return Schedule(child_assignments)
 
+def format_schedule(schedule):
+    lines = ["=== Schedule ===", ""]
+    for section, (teacher, room, time) in schedule.assignments.items():
+        lines.append(f"{section}:  Teacher={teacher},  Room={room},  Time={time}")
+    if schedule.fitness is not None:
+        lines.append("")
+        lines.append(f"Fitness: {schedule.fitness}")
+    lines.append("================")
+    return "\n".join(lines) + "\n"
+
+
 #Output a specific schedule's information
 def print_schedule(schedule):
-    print("=== Schedule ===")
-
-    for section, (teacher, room, time) in schedule.assignments.items():
-        print(f"{section}:  Teacher={teacher},  Room={room},  Time={time}")
-
-    if schedule.fitness is not None:
-        print(f"\nFitness: {schedule.fitness}")
-
-    print("================\n")
+    print(format_schedule(schedule), end="")
 
 def print_metrics(metrics):
     # Header

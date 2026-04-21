@@ -1,0 +1,19 @@
+Final generation: 499
+Best fitness: 6.6
+
+=== Schedule ===
+
+SLA101A:  Teacher=Lock,  Room=Roman 201,  Time=2 PM
+SLA101B:  Teacher=Banks,  Room=Loft 310,  Time=12 PM
+SLA191A:  Teacher=Lock,  Room=Roman 216,  Time=1 PM
+SLA191B:  Teacher=Banks,  Room=Roman 201,  Time=3 PM
+SLA201:  Teacher=Glen,  Room=Roman 216,  Time=12 PM
+SLA291:  Teacher=Shaw,  Room=Frank 119,  Time=1 PM
+SLA303:  Teacher=Banks,  Room=Slater 003,  Time=1 PM
+SLA304:  Teacher=Singer,  Room=Beach 301,  Time=2 PM
+SLA394:  Teacher=Zeldin,  Room=Beach 201,  Time=1 PM
+SLA449:  Teacher=Zeldin,  Room=Slater 003,  Time=2 PM
+SLA451:  Teacher=Zeldin,  Room=Beach 201,  Time=3 PM
+
+Fitness: 6.6
+================
