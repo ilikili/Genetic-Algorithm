@@ -9,7 +9,7 @@ TEACHERS = [
     "Uther",
     "Tyler",
     "Numen",
-    "Zelden"
+    "Zeldin"
 ]
 
 CLASSROOMS = [
@@ -56,7 +56,7 @@ SECTIONS = [
     "SLA303",
     "SLA304",
     "SLA394",
-    "SLA499",
+    "SLA449",
     "SLA451",
 ]
 
@@ -70,7 +70,7 @@ EXPECTED_STUDENTS = {
     "SLA303": 25,
     "SLA304": 20,
     "SLA394": 15,
-    "SLA499": 30,
+    "SLA449": 30,
     "SLA451": 90
 }
 

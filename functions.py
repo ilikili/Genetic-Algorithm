@@ -1,4 +1,5 @@
 #function definitions
+import random
 
 import random
 import numpy as np
@@ -21,6 +22,12 @@ def random_schedule(seed=None):
 
 def evolve(population, keep=0.5, generations=50, seed=None):
     rng = np.random.Generator(np.random.PCG64DXSM(seed))
+def evolve(population, keep=0.5, generations=50, seed=None):
+    rng = np.random.Generator(np.random.PCG64DXSM(seed))
+def evolve(population, keep=0.5, generations=50, seed=None):
+    rng = np.random.Generator(np.random.PCG64DXSM(seed))
+def evolve(population, keep=0.5, generations=50, seed=None):
+    rng = np.random.Generator(np.random.PCG64DXSM(seed))
 
     metrics = [] #store performance
     prev_avg = None
@@ -30,6 +37,8 @@ def evolve(population, keep=0.5, generations=50, seed=None):
         # --- Evaluate all schedules ---
         for schedule in population:
             compute_fitness(schedule)
+
+        # --- Sort by fitness (descending) ---
 
         # --- Sort by fitness (descending) ---
         population.sort(key=lambda s: s.fitness, reverse=True)
