@@ -7,7 +7,7 @@ import models
 
 #Variables needed for GA
 MUTATION_RATE = 0.02
-GENERATIONS = 50
+GENERATIONS = 500
 PERCENT_KEPT = 0.1
 
 #Create the initial populations
@@ -21,18 +21,12 @@ population, metrics = evolve(population,keep=PERCENT_KEPT,generations=GENERATION
 print_metrics(metrics)
 
 
-def plot_fitness_cli(metrics):
-    import sys
-
+def plot_fitness(metrics):
+    """Matplotlib fitness chart"""
     try:
-        sys.stdout.reconfigure(encoding="utf-8")
-    except Exception:
-        pass
-
-    try:
-        import plotext as plt
+        import matplotlib.pyplot as plt
     except ImportError:
-        print("\nplotext is not installed. Install it with: pip install plotext")
+        print("\nmatplotlib is not installed. Install it with: pip install matplotlib")
         return
 
     generations = [m["generation"] for m in metrics]
@@ -40,18 +34,17 @@ def plot_fitness_cli(metrics):
     avg = [m["avg"] for m in metrics]
     worst = [m["worst"] for m in metrics]
 
-    plt.clear_data()
-    plt.clear_figure()
-    plt.theme("clear")
-    plt.title("Fitness Over Generations")
+    plt.figure(figsize=(10, 6))
+    plt.plot(generations, best, "b-", linewidth=2, label="Best")
+    plt.plot(generations, avg, "g-", linewidth=2, label="Average")
+    plt.plot(generations, worst, "r-", linewidth=2, label="Worst")
     plt.xlabel("Generation")
     plt.ylabel("Fitness")
-    plt.plot(generations, best, label="Best", marker=".")
-    plt.plot(generations, avg, label="Average", marker=".")
-    plt.plot(generations, worst, label="Worst", marker=".")
-    plt.plotsize(100, 30)
-    plt.grid(True)
+    plt.title("Fitness over Generations")
+    plt.legend(loc="best")
+    plt.grid(True, linestyle="--", alpha=0.7)
+    plt.tight_layout()
     plt.show()
 
 
-plot_fitness_cli(metrics)
+plot_fitness(metrics)
